@@ -1,18 +1,19 @@
 import math
-from typing import List
+from typing import List, Dict
 from collections import namedtuple
 
 Play = namedtuple('Play', ['name', 'type'])
 Performance = namedtuple('Performance', ['play_id', 'audience'])
 Invoice = namedtuple("Invoice", ["customer", "performances"])
 
-def statement (invoice, plays):
+def statement (invoice: Invoice, plays: Dict[str, Play]) -> str:
     total_amount = 0
     volume_credits = 0
     result = f"Statement for {invoice.customer}\n"
 
     def format(n):
         return "${:0,.2f}".format(n)
+        
     for perf in invoice.performances:
         play = plays[perf.play_id]
         this_amount = 0

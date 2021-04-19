@@ -1,5 +1,5 @@
 from unittest import TestCase
-from app.invoices import statement, Play, Invoice, Performance
+from app.invoice_printer import statement, Play, Invoice, Performance
 
 class InvoiceTest(TestCase):
     def test_statement(self):
@@ -18,6 +18,11 @@ class InvoiceTest(TestCase):
                 ]
             )
 
-        expected = "Statement for BigCo\n" + "\tHamlet: $650.00 (55 seats)\n" + "\tAs You Like It: $580.00 (35 seats)\n" + "\tOthello: $500.00 (40 seats)\n" + "Amount owed is $1,730.00\n" + "You earned 47 credits"
+        expected = "Statement for BigCo\n"
+        expected += "\tHamlet: $650.00 (55 seats)\n"
+        expected += "\tAs You Like It: $580.00 (35 seats)\n"
+        expected += "\tOthello: $500.00 (40 seats)\n"
+        expected += "Amount owed is $1,730.00\n"
+        expected += "You earned 47 credits"
         self.assertEqual(expected, statement(invoice, plays))
     
